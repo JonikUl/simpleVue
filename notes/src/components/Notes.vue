@@ -7,7 +7,19 @@
       :key="index"
     >
       <div class="note-header" :class="{ full: !grid}">
-        <p>{{ note.title }}</p>
+        <p @click="editTitle(index)" :class="{hidden: note.editing}">{{ note.title }}</p>
+        <input
+          autofocus="true"
+          type="text"
+          name="newTitle"
+          id="newTitle"
+          :placeholder="note.title"
+          :class="{hidden: !note.editing}"
+          v-model="note.title"
+          @keyup.enter="doneEdit(index)"
+          @keyup.esc="cancelEdit(index)"
+          @blur="cancelEditOnBlur(index)"
+        />
         <p style="cursor: pointer;" @click="removeNote(index)">X</p>
       </div>
       <div class="note-body">
@@ -34,6 +46,18 @@ export default {
     removeNote (index) {
       this.$emit('remove', index)
     },
+    editTitle (index) {
+      this.$emit('editTitle', index)
+    },
+    doneEdit (index) {
+      this.$emit('doneEdit', index)
+    },
+    cancelEdit (index) {
+      this.$emit('cancelEdit', index)
+    },
+    cancelEditOnBlur (index) {
+      this.$emit('cancelEditOnBlur', index)
+    }
   }
 }
 </script>
@@ -76,6 +100,9 @@ export default {
   p {
     color: #402caf;
     font-size: 22px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   &.full {
     justify-content: center;
@@ -86,6 +113,11 @@ export default {
       }
     }
   }
+  input {
+    margin-bottom: 0;
+    margin-right: 15px;
+    padding: 08px 13px;
+  }
 }
 .note-body {
   p {
@@ -95,5 +127,8 @@ export default {
     font-size: 14px;
     color: #999999;
   }
+}
+.hidden {
+  display: none;
 }
 </style>
