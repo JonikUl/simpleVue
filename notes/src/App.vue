@@ -78,20 +78,24 @@ export default {
       grid: true,
       note: {
         title: '',
-        descr: ''
+        descr: '',
+        priority: 1
       },
       notes: [{
         title: 'First Note',
+        priority: 2,
         descr: 'Description for First Note',
         date: new Date(Date.now()).toLocaleString()
       },
       {
         title: 'Second Note',
+        priority: 1,
         descr: 'Description for Second Note',
         date: new Date(Date.now()).toLocaleString()
       },
       {
         title: 'Third Note',
+        priority: 3,
         descr: 'Description for Third Note',
         date: new Date(Date.now()).toLocaleString()
       },
@@ -102,7 +106,8 @@ export default {
     addNote () {
       let {
         title,
-        descr
+        descr,
+        priority
       } = this.note;
 
       if (title === '') {
@@ -113,10 +118,12 @@ export default {
       this.notes.push({
         title,
         descr,
+        priority,
         date: new Date(Date.now()).toLocaleString()
       });
       this.note.title = '';
       this.note.descr = '';
+      this.note.priority = 1;
       this.message = null;
     },
     removeNote (index) {
@@ -145,7 +152,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 36px 0;
   h1 {
     font-size: 32px;
   }

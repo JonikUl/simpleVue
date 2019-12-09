@@ -1,6 +1,11 @@
 <template>
   <div class="notes">
-    <div class="note" :class="{ full: !grid }" v-for="(note, index) in notes" :key="index">
+    <div
+      class="note"
+      :class="{ full: !grid, high: note.priority ==2, 'very-high': note.priority == 3}"
+      v-for="(note, index) in notes"
+      :key="index"
+    >
       <div class="note-header" :class="{ full: !grid}">
         <p>{{ note.title }}</p>
         <p style="cursor: pointer;" @click="removeNote(index)">X</p>
@@ -56,6 +61,12 @@ export default {
   &.full {
     width: 100%;
     text-align: center;
+  }
+  &.high {
+    border: 2px solid #fed330;
+  }
+  &.very-high {
+    border: 2px solid #fc5c65;
   }
 }
 .note-header {
