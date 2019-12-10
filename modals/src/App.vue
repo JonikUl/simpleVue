@@ -3,10 +3,13 @@
     <div class="wrapper-content">
       <section>
         <div class="container">
-          <img
-            alt="Vue logo"
-            src="./assets/logo.png"
-          >
+          <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Show first modal</button>
+          <modals title="First modal" v-show="modalFirst" @close="modalFirst = !modalFirst">
+            <div slot="body">
+              <p>Text</p>
+              <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Well Done!</button>
+            </div>
+          </modals>
         </div>
       </section>
     </div>
@@ -14,8 +17,14 @@
 </template>
 
 <script>
+import modals from '@/components/Modal.vue'
 export default {
-  name: 'app',
+  components: { modals },
+  data () {
+    return {
+      modalFirst: false
+    }
+  }
 }
 </script>
 
