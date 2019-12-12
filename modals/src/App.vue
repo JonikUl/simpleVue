@@ -39,6 +39,10 @@
             @click="modalValidate = !modalValidate"
           >Show modal with form + validate</button>
           <modalValidate v-show="modalValidate" @close="modalValidate = false" />
+          <button class="btn btnPrimary" @click="register = !register">Show register form</button>
+          <register v-show="register" @close="register = false" @showLogin="showLogin" />
+          <button class="btn btnPrimary" @click="login = !login">Show login form</button>
+          <login v-show="login" @close="login = false" @showRegister="showRegister" />
         </div>
       </section>
     </div>
@@ -48,8 +52,11 @@
 <script>
 import modals from '@/components/UI/Modal.vue'
 import modalValidate from '@/components/ModalValidate.vue'
+import register from '@/components/Register.vue'
+import login from '@/components/Login.vue'
+
 export default {
-  components: { modals, modalValidate },
+  components: { modals, modalValidate, register, login },
   data () {
     return {
       modalFirst: false,
@@ -59,6 +66,8 @@ export default {
         email: '',
       },
       modalValidate: false,
+      register: false,
+      login: false,
     }
   },
   methods: {
@@ -70,8 +79,16 @@ export default {
       this.modalSecond.name = '';
       this.modalSecond.email = '';
       this.modalSecond.show = false;
+    },
+    showRegister () {
+      this.login = false;
+      this.register = true;
+    },
+    showLogin () {
+      this.register = false;
+      this.login = true;
     }
-  }
+  },
 }
 </script>
 
