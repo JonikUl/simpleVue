@@ -141,7 +141,6 @@ export default {
       delete this.notes[index].cachedTitle;
     },
     cancelEditOnBlur (index) {
-      console.log('blur');
       this.notes[index].editing = false;
       if (this.notes[index].cachedTitle) {
         this.notes[index].title = this.notes[index].cachedTitle;

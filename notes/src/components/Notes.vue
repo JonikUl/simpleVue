@@ -12,7 +12,7 @@
           autofocus="true"
           type="text"
           name="newTitle"
-          id="newTitle"
+          :id="index"
           :placeholder="note.title"
           :class="{hidden: !note.editing}"
           v-model="note.title"
