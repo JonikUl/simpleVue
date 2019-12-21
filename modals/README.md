@@ -1,5 +1,5 @@
-# simpleVue
-Simple Vue Apps
+# modals
+Simple modals
 ```
 npm install
 ```

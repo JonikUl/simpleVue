@@ -1,4 +1,4 @@
-# vue-cli
+# shop
 
 ## Project setup
 ```
