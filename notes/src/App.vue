@@ -89,29 +89,11 @@ export default {
         descr: '',
         priority: 1,
       },
-      notes: [{
-        title: 'First Note',
-        priority: 2,
-        descr: 'Description for First Note',
-        date: new Date(Date.now()).toLocaleString(),
-        editing: false
-      },
-      {
-        title: 'Second Note',
-        priority: 1,
-        descr: 'Description for Second Note',
-        date: new Date(Date.now()).toLocaleString(),
-        editing: false
-      },
-      {
-        title: 'Third Note',
-        priority: 3,
-        descr: 'Description for Third Note',
-        date: new Date(Date.now()).toLocaleString(),
-        editing: false
-      },
-      ]
+      notes: null
     }
+  },
+  created () {
+    this.notes = this.$store.getters.getNotes
   },
   methods: {
     addNote () {
@@ -126,7 +108,7 @@ export default {
         return false;
       }
 
-      this.notes.push({
+      this.$store.commit('addNote', {
         title,
         descr,
         priority,
@@ -138,7 +120,7 @@ export default {
       this.message = null;
     },
     removeNote (index) {
-      this.notes.splice(index, 1)
+      this.$store.commit('deleteNote', index)
     },
     editTitle (index) {
       this.notes.map(i => i.editing = false);
@@ -150,6 +132,7 @@ export default {
       if (!this.notes[index].title) {
         this.notes[index].title = this.notes[index].cachedTitle;
       }
+      this.$store.commit('editNote', { index, title: this.notes[index].title })
       delete this.notes[index].cachedTitle
     },
     cancelEdit (index) {
