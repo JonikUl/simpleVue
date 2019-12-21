@@ -24,7 +24,6 @@ export default {
   },
   created () {
     this.shopList = this.$store.getters.getShopList;
-    console.log(this.shopList);
   }
 }
 </script>
