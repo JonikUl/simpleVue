@@ -2,9 +2,12 @@
   "name": "notes-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://JonikUl.github.io/notes-app",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^2.6.10",
@@ -14,6 +17,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.0",
     "@vue/cli-service": "^3.12.0",
+    "gh-pages": "^2.2.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
